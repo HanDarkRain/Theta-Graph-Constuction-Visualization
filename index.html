@@ -1,1 +1,40 @@
-<h1>hello<h1>
+<html>
+<head>
+    <script src="myScript.js"></script>
+</head>
+
+<body>
+    <div align="center">
+    <h1>1. Generate number of points you want</h1>
+    <h1>2. input the k your want and confirm</h1>
+    <h1>3. Repeat clicking the "move to next cones"</h1>
+
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #c3c3c3;">
+    </canvas>
+    <canvas id="copyCanvas1" width="500" height="500" style="border:1px solid #c3c3c3;display: none;">
+    </canvas>
+    <canvas id="copyCanvas2" width="500" height="500" style="border:1px solid #c3c3c3;display: none;">
+    </canvas>
+    <!-- display: none; -->
+    <br />
+    <br />
+
+    <button type="button" onclick="addPoints()">Add a random point</button>
+
+    <p>Enter number of cones, k:</p>
+    </nobr>
+
+    <input type="text" id="k" maxlength="8" size="10">
+
+    <button onclick="getDegree()">Use this k</button>
+    <p id="confirm" style="display: none;">k confirmed</p>
+    <br />
+    <br />
+
+    <button id ="nextBtn" type="button" onclick="connectNextPoint()">Move to next cones</button>
+
+
+    </div>
+</body>
+
+</html>
