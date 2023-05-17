@@ -1,5 +1,6 @@
 var xCoordinates=[];
 var yCoordinates=[];
+
 var length_coordinates = 0;
 var index = 0;
 
@@ -14,6 +15,23 @@ var connectionTable = [];
 var kConfirm = false;
 
 var showProj = true;
+
+var canvas = document.getElementById("myCanvas");
+
+canvas.addEventListener("mousedown", function(event) {
+    var rect = canvas.getBoundingClientRect();
+    var scaleX = canvas.width / rect.width;
+    var scaleY = canvas.height / rect.height;
+    var x = parseFloat(((event.clientX - rect.left) * scaleX).toFixed(2));
+    var y = parseFloat(((event.clientY - rect.top) * scaleY).toFixed(2));
+    console.log("Add x, y: ", x, y); 
+
+    xCoordinates.push(x);
+    yCoordinates.push(y);
+    length_coordinates++;
+    drawCircle(xCoordinates[length_coordinates-1],yCoordinates[length_coordinates-1]);
+    displayPoints();
+});
 
 function myFunction(){
     document.getElementById("demo").innerHTML="我的第一个 JavaScript 函数";
@@ -79,7 +97,7 @@ function displayPoints(){
     document.getElementById("pointsDisplay").appendChild(p);
     for (let i = 0; i < length_coordinates; i++){
         var p = document.createElement('p');
-        p.innerHTML = "(" + String(xCoordinates[i])+", "+String(500 - yCoordinates[i]) + ")";
+        p.innerHTML = "(" + String(xCoordinates[i])+", "+String((500.00 - yCoordinates[i]).toFixed(2)) + ")";
         document.getElementById("pointsDisplay").appendChild(p);
         if (i >= 15){
             var p = document.createElement('p');
@@ -112,8 +130,8 @@ function addPointsSpecific(){
 }
 
 function addPoints(){
-    xCoordinates.push(Math.floor(Math.random() * 471) + 15);
-    yCoordinates.push(Math.floor(Math.random() * 471) + 15);
+    xCoordinates.push(parseFloat((Math.random() * (496 - 4) + 4).toFixed(2)));
+    yCoordinates.push(parseFloat((Math.random() * (496 - 4) + 4).toFixed(2)));
     length_coordinates++;
     drawCircle(xCoordinates[length_coordinates-1],yCoordinates[length_coordinates-1]);
     displayPoints();
@@ -172,7 +190,7 @@ function connectLines(xLocation, yLocation, highlight){
                 }
             }
             console.log("Finding points in cone current point: ",x , y, angle );
-            if ((angle > radian*i && angle < radian*(i+1)) || (angle > radian*i+2*Math.PI) && (angle < radian*(i+1)+2*Math.PI)){
+            if ((angle >= radian*i && angle < radian*(i+1)) || (angle >= radian*i+2*Math.PI) && (angle < radian*(i+1)+2*Math.PI)){
                 console.log("Found inside cone!!");
                 var a = [x,y];
                 candidates.push(a);
@@ -233,7 +251,7 @@ function drawProjections(xLocation, yLocation){
                 }
             }
             console.log("Finding points in cone current point: ",x , (500-y), angle );
-            if ((angle > radian*i && angle < radian*(i+1)) || (angle > radian*i+2*Math.PI) && (angle < radian*(i+1)+2*Math.PI)){
+            if ((angle >= radian*i && angle < radian*(i+1)) || (angle >= radian*i+2*Math.PI) && (angle < radian*(i+1)+2*Math.PI)){
                 console.log("Found inside cone!!");
                 var a = [x,y];
                 candidates.push(a);
@@ -344,8 +362,10 @@ function resetGraph(){
     document.getElementById("copyCanvas3").style.display = "inline";
     document.getElementById("newConst").style.display = "block";
     document.getElementById("oldConst").style.display = "inline";
-    document.getElementById("pointsDisplay").style.left = "640";
+    document.getElementById("pointsDisplay").style.left = "620";
     document.getElementById("pointsDisplay").style.top = "-620";
+    document.getElementById("captionDisplay").style.left = "50";
+    document.getElementById("captionDisplay").style.top = "835";
     clearCanvas();
     for (let j = 0; j < length_coordinates; j++){
         drawCircle(xCoordinates[j],yCoordinates[j]);
