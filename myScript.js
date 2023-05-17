@@ -364,7 +364,7 @@ function resetGraph(){
     document.getElementById("oldConst").style.display = "inline";
     document.getElementById("pointsDisplay").style.left = "620";
     document.getElementById("pointsDisplay").style.top = "-620";
-    document.getElementById("captionDisplay").style.left = "50";
+    document.getElementById("captionDisplay").style.left = "40";
     document.getElementById("captionDisplay").style.top = "835";
     clearCanvas();
     for (let j = 0; j < length_coordinates; j++){
