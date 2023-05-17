@@ -22,8 +22,8 @@ canvas.addEventListener("mousedown", function(event) {
     var rect = canvas.getBoundingClientRect();
     var scaleX = canvas.width / rect.width;
     var scaleY = canvas.height / rect.height;
-    var x = parseFloat(((event.clientX - rect.left) * scaleX).toFixed(2));
-    var y = parseFloat(((event.clientY - rect.top) * scaleY).toFixed(2));
+    var x = parseFloat(((event.clientX - rect.left + Math.random() - 0.5) * scaleX).toFixed(2));
+    var y = parseFloat(((event.clientY - rect.top + Math.random() - 0.5) * scaleY).toFixed(2));
     console.log("Add x, y: ", x, y); 
 
     xCoordinates.push(x);
